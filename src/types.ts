@@ -39,42 +39,6 @@ export interface ChocolateProduct {
   stockStatus: 'in_stock' | 'low_stock';
 }
 
-export interface SynthePortal {
-  id: string;
-  name: string;
-  region: string;
-  country: string;
-  flag: string;
-  url: string;
-  description: string;
-  focus: string;
-  certifications: string[];
-  currency: string;
-  status: string;
-  established: string;
-}
-
-export interface InternationalBrand {
-  id: string;
-  name: string;
-  country: string;
-  flag: string;
-  region: string;
-  url: string;
-  category: string;
-  specialty: string;
-  sugarProfile: string;
-  vitaminActives: string[];
-  certifications: string[];
-  established: string;
-  shipping: string;
-}
-
-export interface CartItem {
-  product: ChocolateProduct;
-  quantity: number;
-}
-
 export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'AUD' | 'AED' | 'INR';
 
 export interface CurrencyInfo {
@@ -82,22 +46,4 @@ export interface CurrencyInfo {
   symbol: string;
   rateToUSD: number;
   format: (amountUSD: number) => string;
-}
-
-export interface AIFinderResult {
-  summary: string;
-  recommendations: {
-    name: string;
-    websiteUrl: string;
-    country: string;
-    flag: string;
-    type: string;
-    keyVitaminsAndActives: string[];
-    sweetener: string;
-    certifications: string[];
-    internationalShipping: string;
-    whyRecommended: string;
-  }[];
-  syntheAdvantage?: string;
-  dietaryCompliance?: string;
 }

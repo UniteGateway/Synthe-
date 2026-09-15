@@ -1,22 +1,17 @@
 import React from 'react';
-import { ShieldCheck, Sparkles, Globe, ArrowRight, Activity, Zap, Check, Store } from 'lucide-react';
-import { CurrencyCode } from '../types';
+import { ShieldCheck, Sparkles, ArrowRight, Activity, Zap, Check, Store, FlaskConical, Award } from 'lucide-react';
 import { SyntheLogo } from './SyntheLogo';
 
 interface HeroProps {
   onExploreProducts: () => void;
-  onExploreInternational: () => void;
   onExploreScience: () => void;
   onStockSynthe?: () => void;
-  currentCurrency: CurrencyCode;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onExploreProducts,
-  onExploreInternational,
   onExploreScience,
-  onStockSynthe,
-  currentCurrency
+  onStockSynthe
 }) => {
   return (
     <section className="relative overflow-hidden pt-6 pb-16 lg:pt-14 lg:pb-24 bg-gradient-to-b from-[#180f0a] via-[#1e130c] to-[#140e0b]">
@@ -87,12 +82,12 @@ export const Hero: React.FC<HeroProps> = ({
                 <div className="text-[11px] uppercase tracking-wider text-[#a69284] mt-0.5">Lipid Absorption</div>
               </div>
               <div className="bg-[#20140e] border border-[#3b271d] rounded-lg p-3 text-center">
-                <div className="text-xl font-bold font-serif text-[#f7f2ea]">8+</div>
-                <div className="text-[11px] uppercase tracking-wider text-[#a69284] mt-0.5">Global Portals</div>
+                <div className="text-xl font-bold font-serif text-[#f7f2ea]">100%</div>
+                <div className="text-[11px] uppercase tracking-wider text-[#a69284] mt-0.5">Criollo Cacao</div>
               </div>
             </div>
 
-            {/* CTAs: Exact Primary Buttons from Reference + International Directory */}
+            {/* CTAs: Primary Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3">
               <button
                 onClick={onExploreProducts}
@@ -104,21 +99,21 @@ export const Hero: React.FC<HeroProps> = ({
               </button>
 
               <button
+                onClick={onExploreScience}
+                id="hero-science-btn"
+                className="px-6 py-3.5 rounded-md bg-[#241712] hover:bg-[#322018] border border-[#422e23] text-[#d6c7b7] hover:text-[#ffffff] font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm"
+              >
+                <FlaskConical className="w-4 h-4 text-[#c99a4c]" />
+                <span>The Science</span>
+              </button>
+
+              <button
                 onClick={onStockSynthe || onExploreProducts}
                 id="hero-stock-btn"
                 className="px-6 py-3.5 rounded-md bg-transparent hover:bg-[#c99a4c]/10 border border-[#c99a4c] text-[#e8bd78] font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <Store className="w-4 h-4 text-[#c99a4c]" />
                 <span>Stock Synthé</span>
-              </button>
-
-              <button
-                onClick={onExploreInternational}
-                id="hero-international-btn"
-                className="px-5 py-3.5 rounded-md bg-[#241712] hover:bg-[#322018] border border-[#422e23] text-[#d6c7b7] hover:text-[#ffffff] font-medium text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm"
-              >
-                <Globe className="w-3.5 h-3.5 text-[#c99a4c]" />
-                <span>Find International Websites</span>
               </button>
             </div>
           </div>
@@ -163,23 +158,23 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              {/* International Directory Banner in Hero */}
+              {/* Montevia Quality Assurance Card */}
               <div className="bg-[#1c120c] rounded-xl p-4 border border-[#3b271d] space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="flex items-center gap-1.5 font-semibold text-[#e8bd78]">
-                    <Globe className="w-3.5 h-3.5 text-[#c99a4c]" />
-                    Find All Other International Websites
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#7ae08d]" />
+                    Montevia Nutri Foods Quality Assurance
                   </span>
                   <span className="text-[10px] text-[#7ae08d] bg-[#1a2e1d] px-2 py-0.5 rounded font-medium">
-                    Verified Brands
+                    Lab Certified
                   </span>
                 </div>
-                <p className="text-xs text-[#b8a698] font-light">
-                  Compare international websites, regional fulfillment centers, and verified brands for sugar-free vitamin chocolate across USA, EU, UK, Japan, Switzerland, Australia & UAE.
+                <p className="text-xs text-[#b8a698] font-light leading-relaxed">
+                  Stone-ground Criollo cacao infused with bioavailable vitamins and sweetened cleanly with botanical monk fruit. Tested under 0.1 ppm heavy metals.
                 </p>
-                <div className="pt-1 flex items-center justify-between text-xs">
-                  <span className="text-xs text-[#a69284]">Fulfillment corridors:</span>
-                  <span className="text-sm">🇮🇳 🇺🇸 🇪🇺 🇬🇧 🇯🇵 🇦🇺 🇦🇪 🇨🇭</span>
+                <div className="pt-1 flex items-center justify-between text-xs text-[#a69284]">
+                  <span>Crafted in Hyderabad</span>
+                  <span className="text-[#e8bd78] font-medium">GMP & ISO 22000</span>
                 </div>
               </div>
             </div>

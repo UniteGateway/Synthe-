@@ -1,6 +1,6 @@
 {
   "name": "Synthé Organic Chocolate",
-  "description": "Zero-sugar, vitamin-fortified organic chocolate crafted by Montevia Nutri Foods, featuring global regional portals and an international brand & website directory.",
+  "description": "Plant-based, gluten-free organic chocolate infused with essential vitamins and zero refined sugar, crafted by Montevia Nutri Foods in Hyderabad.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,25 +1,35 @@
-import React from 'react';
-import { X, ShieldCheck, Check, Sparkles, Zap, Award, ExternalLink } from 'lucide-react';
-import { ChocolateProduct, CurrencyCode } from '../types';
-import { CURRENCIES } from '../data/internationalData';
+import React, { useState } from 'react';
+import { X, ShieldCheck, Check, Sparkles, Zap, Award, ExternalLink, Mail, Copy, FileText } from 'lucide-react';
+import { ChocolateProduct } from '../types';
 
 interface SupplementModalProps {
   product: ChocolateProduct | null;
   onClose: () => void;
-  onAddToCart: (product: ChocolateProduct) => void;
-  currentCurrency: CurrencyCode;
+  onInquire?: (product: ChocolateProduct) => void;
 }
 
 export const SupplementModal: React.FC<SupplementModalProps> = ({
   product,
   onClose,
-  onAddToCart,
-  currentCurrency
+  onInquire
 }) => {
+  const [copiedSpecs, setCopiedSpecs] = useState(false);
+
   if (!product) return null;
 
-  const currencyInfo = CURRENCIES[currentCurrency];
-  const formattedPrice = currencyInfo.format(product.priceUSD);
+  const handleCopySpecs = () => {
+    const text = `Synthé Organic Chocolate - ${product.name}
+Cacao: ${product.cacaoPercentage}% Single-Origin Criollo
+Sweetener: ${product.sweetenerSystem}
+Active Vitamins:
+${product.vitamins.map(v => `- ${v.name}: ${v.dosage} (${v.dailyValuePercentage}% DV) - ${v.biologicalRole}`).join('\n')}
+Nutrition per 45g: ${product.nutrition.calories} kcal, ${product.nutrition.netCarbs}g Net Carbs, 0g Added Sugar
+Batch Purity: ${product.clinicalNote}`;
+
+    navigator.clipboard.writeText(text);
+    setCopiedSpecs(true);
+    setTimeout(() => setCopiedSpecs(false), 2500);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
@@ -36,6 +46,9 @@ export const SupplementModal: React.FC<SupplementModalProps> = ({
             <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[#1a2e1d] text-[#7ae08d] border border-[#3b7a48]/50">
               0g Added Sugar
             </span>
+            <span className="text-xs font-medium px-2 py-1 rounded bg-[#241712] text-[#cdb7ff] border border-[#463259] hidden sm:inline">
+              {product.badge}
+            </span>
           </div>
 
           <button
@@ -50,7 +63,7 @@ export const SupplementModal: React.FC<SupplementModalProps> = ({
         <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto text-left">
           {/* Header Title & Description */}
           <div>
-            <h3 className="text-2xl font-display font-bold text-[#f7f2ea]">
+            <h3 className="text-2xl font-serif font-bold text-[#f7f2ea]">
               {product.name}
             </h3>
             <p className="text-xs text-[#e6b978] font-medium mt-0.5">
@@ -171,29 +184,36 @@ export const SupplementModal: React.FC<SupplementModalProps> = ({
           </div>
         </div>
 
-        {/* Modal Footer with Add to Cart */}
-        <div className="p-5 border-t border-[#312117] bg-[#160e0a] flex items-center justify-between">
-          <div>
-            <div className="text-xs text-[#a69284]">Single Bar (45g)</div>
-            <div className="text-xl font-bold text-[#e6b978]">{formattedPrice}</div>
+        {/* Modal Footer - Regular Website Actions */}
+        <div className="p-5 border-t border-[#312117] bg-[#160e0a] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-left w-full sm:w-auto">
+            <div className="text-xs text-[#a69284]">Format & Origin</div>
+            <div className="text-sm font-semibold text-[#e6b978]">45g Artisanal Bar • Made in Hyderabad</div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
             <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg text-xs font-semibold text-[#a69284] hover:text-white transition-colors cursor-pointer"
+              onClick={handleCopySpecs}
+              className="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#d6c7b7] bg-[#221611] hover:bg-[#322018] border border-[#422e23] transition-colors cursor-pointer flex items-center gap-1.5"
             >
-              Close
+              {copiedSpecs ? <Check className="w-3.5 h-3.5 text-[#7ae08d]" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copiedSpecs ? 'Specs Copied' : 'Copy Specs'}</span>
             </button>
 
             <button
               onClick={() => {
-                onAddToCart(product);
                 onClose();
+                if (onInquire) {
+                  onInquire(product);
+                } else {
+                  const elem = document.getElementById('inquire');
+                  elem?.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
-              className="px-6 py-2.5 rounded-lg bg-[#c6934b] hover:bg-[#d5a359] text-[#140e0b] font-bold text-xs shadow-lg transition-all cursor-pointer"
+              className="px-5 py-2.5 rounded-lg bg-[#c6934b] hover:bg-[#d5a359] text-[#140e0b] font-bold text-xs shadow-lg transition-all cursor-pointer flex items-center gap-1.5"
             >
-              Add to Box
+              <Mail className="w-3.5 h-3.5" />
+              <span>Inquire This Formulation</span>
             </button>
           </div>
         </div>

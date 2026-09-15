@@ -1,6 +1,5 @@
 import React from 'react';
-import { Globe, ShieldCheck, Award, Heart, Mail, ExternalLink } from 'lucide-react';
-import { SYNTHE_PORTALS } from '../data/internationalData';
+import { ShieldCheck, Award, Heart, Mail, Store, Building2, FileText } from 'lucide-react';
 import { SyntheLogo } from './SyntheLogo';
 
 interface FooterProps {
@@ -75,32 +74,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
             </ul>
           </div>
 
-          {/* Col 3: International Websites & Portals */}
+          {/* Col 3: Stockists & Direct Inquiries */}
           <div className="space-y-3">
             <h4 className="font-serif font-bold text-sm text-[#f7f2ea] uppercase tracking-wider flex items-center gap-1.5">
-              <Globe className="w-3.5 h-3.5 text-[#e8bd78]" />
-              International Portals
+              <Store className="w-3.5 h-3.5 text-[#e8bd78]" />
+              Trade & Stockists
             </h4>
             <ul className="space-y-2 text-xs">
-              {SYNTHE_PORTALS.slice(0, 5).map(portal => (
-                <li key={portal.id}>
-                  <a
-                    href={portal.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[#e8bd78] transition-colors flex items-center gap-1.5"
-                  >
-                    <span>{portal.flag} {portal.name.split('&')[0]}</span>
-                    <ExternalLink className="w-3 h-3 text-[#a69284]" />
-                  </a>
-                </li>
-              ))}
               <li>
-                <button
-                  onClick={() => onNavigateSection('international-directory')}
-                  className="text-[#e8bd78] hover:underline font-semibold text-xs pt-1 flex items-center gap-1 cursor-pointer"
-                >
-                  <span>Explore all international sites →</span>
+                <button onClick={() => onNavigateSection('inquire')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left flex items-center gap-1.5">
+                  <span>Retail Stockist Inquiries</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigateSection('inquire')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left flex items-center gap-1.5">
+                  <span>Sample Tasting Kits</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigateSection('inquire')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left flex items-center gap-1.5">
+                  <span>Clinical Dossiers & Certificates</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigateSection('inquire')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left flex items-center gap-1.5">
+                  <span>Private Reserve Batches</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigateSection('about-extraction')} className="text-[#e8bd78] hover:underline font-semibold text-xs pt-1 flex items-center gap-1 cursor-pointer">
+                  <span>Visit Hyderabad Atelier →</span>
                 </button>
               </li>
             </ul>
@@ -128,8 +131,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigateSection('international-directory')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left">
-                  International Brand Comparator
+                <button onClick={() => onNavigateSection('about-extraction')} className="hover:text-[#e8bd78] transition-colors cursor-pointer text-left">
+                  ISO 22000 & Clean Room Standards
                 </button>
               </li>
               <li>
@@ -171,7 +174,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
             <div className="flex items-center gap-4 text-[#a69284]">
               <span>Privacy Policy</span>
               <span>Terms of Trade</span>
-              <span>International Dispatch</span>
+              <span>Quality Specifications</span>
             </div>
           </div>
         </div>
