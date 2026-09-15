@@ -1,0 +1,6 @@
+{
+  "name": "Synthé Organic Chocolate",
+  "description": "Zero-sugar, vitamin-fortified organic chocolate crafted by Montevia Nutri Foods, featuring global regional portals and an international brand & website directory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
